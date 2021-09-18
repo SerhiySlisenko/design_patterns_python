@@ -1,22 +1,20 @@
-class CodeBuilder:
-    def __init__(self, root_name: str):
-        self.root_name = root_name
-        self.fields = []
+from __future__ import annotations
 
-    def add_field(self, name: str, value: str):
-        self.fields.append(f"{' '*4}self.{name} = {value}")
+from creational.builder.class_type import Class
+from creational.builder.field_type import Field
+
+
+class CodeBuilder:
+    """
+    The CodeBuilder is the builder to create python class with optional fields
+    """
+    def __init__(self, root_name: str):
+        self.__class = Class(root_name)
+
+    def add_field(self, name: str, value: str) -> CodeBuilder:
+        self.__class.fields.append(Field(name, value))
         return self
 
     def __str__(self):
-        return self.print()
+        return self.__class.__str__()
 
-    def print(self):
-        lines = list()
-        lines.append(f"class {self.root_name}:")
-        if self.fields:
-            lines.append(f"{' '*2}def __init__(self):")
-            for field in self.fields:
-                lines.append(field)
-        else:
-            lines.append(f"{' '*2}pass")
-        return '\n'.join(lines)
