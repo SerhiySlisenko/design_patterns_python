@@ -46,10 +46,10 @@ class Pizza:
         self.__toppings.append(value.name)
 
     def __str__(self) -> str:
-        return f"Pizza {self.__pizza_type}"
+        return f"Pizza '{self.__pizza_type}'"
 
     def show_components(self) -> None:
-        pizza_str = f"----------------------Pizza {self.__pizza_type} components----------------------\n"
+        pizza_str = f"\n----------------------{self} components----------------------\n"
         pizza_str += f"Dough: {self.__dough}\n" if self.__dough is not None else ""
         pizza_str += f"Sauce: {self.__sauce}\n" if self.__sauce is not None else ""
         if self.__toppings is not None:
