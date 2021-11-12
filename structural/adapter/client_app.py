@@ -1,6 +1,6 @@
 from structural.adapter.square import Square
 from structural.adapter.rectangle import Rectangle
-from structural.adapter.adapter.square_to_rectangle_adapter import SquareToRectangleAdapter
+from structural.adapter.adapters.square_to_rectangle_adapter import SquareToRectangleAdapter
 
 
 def main() -> None:
