@@ -4,6 +4,11 @@ from .subsystems import Generator, Splitter, Verifier
 
 
 class MagicSquareGenerator:
+    """
+    This class generates a magic square of a given size.
+    Magic square wiki: https://en.wikipedia.org/wiki/Magic_square
+    """
+
     def __init__(self) -> None:
         self.g = Generator()
         self.s = Splitter()
