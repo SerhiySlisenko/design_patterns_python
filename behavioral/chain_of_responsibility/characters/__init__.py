@@ -1,0 +1,3 @@
+from behavioral.chain_of_responsibility.characters.creature import Creature
+from behavioral.chain_of_responsibility.characters.goblin import Goblin
+from behavioral.chain_of_responsibility.characters.goblin_king import GoblinKing
