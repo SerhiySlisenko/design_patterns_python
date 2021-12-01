@@ -10,8 +10,8 @@ def main() -> None:
     # Try to undo the command and check the results.
     ba = BankAccount()
 
-    deposit1 = BankAccountCommand(ba, BankAccountCommand.Action.DEPOSIT, 1000)
-    deposit2 = BankAccountCommand(ba, BankAccountCommand.Action.DEPOSIT, 1000)
+    deposit1 = BankAccountCommand(ba, BankAccount.Action.DEPOSIT, 1000)
+    deposit2 = BankAccountCommand(ba, BankAccount.Action.DEPOSIT, 1000)
     composite = CompositeBankAccountCommand([deposit1, deposit2])
 
     composite.execute()
@@ -26,8 +26,8 @@ def main() -> None:
     ba2 = BankAccount()
     amount = 1000  # no transactions should happen, but second is happened while do execute()
 
-    wc = BankAccountCommand(ba1, BankAccountCommand.Action.WITHDRAW, amount)
-    dc = BankAccountCommand(ba2, BankAccountCommand.Action.DEPOSIT, amount)
+    wc = BankAccountCommand(ba1, BankAccount.Action.WITHDRAW, amount)
+    dc = BankAccountCommand(ba2, BankAccount.Action.DEPOSIT, amount)
     transfer = CompositeBankAccountCommand([wc, dc])
 
     transfer.execute()
