@@ -10,39 +10,52 @@ class PreOrderTraversalIterator(Iterator):
     """
     Concrete Iterators implement various traversal algorithms. These classes
     store the current traversal position at all times.
+    This class contains a complete implementation of Pre-Order Traverse iteration.
     """
 
-    """
-    `current` attribute stores the current traversal position.
-    """
-    current: Node = None
+    # `_current` attribute stores the current traversal position.
+    _current: Node = None
 
-    def __init__(self, root: Node):
-        self.root = self.current = root
+    def __init__(self, root: Node) -> None:
+        self.root = self._current = root
         self.yielded_start = False
+        self.next_time_exit = False
 
-    def __next__(self):
+    def __next__(self) -> Node:
         if not self.yielded_start:
             self.yielded_start = True
-            return self.current
+            return self._current
 
-        if self.current.left:
-            self.current = self.current.left
-            return self.current
-        elif self.current.right:
-            if self.current.left:
-                self.current = self.current.left
-            elif self.current.right:
-                self.current = self.current.right
-            return self.current
+        if self._current.left:
+            self._current = self._current.left
+            return self._current
+        elif self._current.right:
+            if self._current.left:
+                self._current = self._current.left
+            elif self._current.right:
+                self._current = self._current.right
+            return self._current
 
         else:
-            p = self.current.parent
-            while p == self.root:
-                if p and self.current.left == p.left:
-                    self.current = p
-                elif p and self.current.right == p.right:
-                    self.current = p
+            p = self._current.parent
+            if p != self.root:
+                if self._current == p.left:
+                    if p.right:
+                        self._current = p.right
+                        return self._current
+
                 else:
+                    while not p == self.root:
+                        p = p.parent
+                        if p.right and self._current not in [child for child in p.right if child is not None]:
+                            self._current = p.right
+                            return self._current
+
+                    if not self.next_time_exit:
+                        self.next_time_exit = True
+
+                        if p.right:
+                            self._current = p.right
+                            return self._current
 
             raise StopIteration

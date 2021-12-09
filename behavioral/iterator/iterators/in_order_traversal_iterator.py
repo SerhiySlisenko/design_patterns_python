@@ -10,20 +10,19 @@ class InOrderTraversalIterator(Iterator):
     """
     Concrete Iterators implement various traversal algorithms. These classes
     store the current traversal position at all times.
+    This class contains a complete implementation of In-Order Traverse iteration.
     """
 
-    """
-    `current` attribute stores the current traversal position. 
-    """
+    # `_current` attribute stores the current traversal position.
     _current: Node = None
 
-    def __init__(self, root: Node):
+    def __init__(self, root: Node) -> None:
         self.root = self._current = root
         self.yielded_start = False
         while self._current.left:
             self._current = self._current.left
 
-    def __next__(self):
+    def __next__(self) -> Node:
         if not self.yielded_start:
             self.yielded_start = True
             return self._current

@@ -1,14 +1,15 @@
 from __future__ import annotations
 from collections.abc import Iterable, Iterator
+from typing import Optional
 
 from iterators import InOrderTraversalIterator, PreOrderTraversalIterator, PostOrderTraversalIterator
 
 
 class Node(Iterable):
     """
-
+    Compound collection of nodes. Each Node can contain left/right or both Nodes inside.
     """
-    def __init__(self, value, left=None, right=None):
+    def __init__(self, value: int, left: Optional[Node] = None, right: Optional[Node] = None):
         self.right = right
         self.left = left
         self.value = value

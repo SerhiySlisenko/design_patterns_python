@@ -8,38 +8,24 @@ if TYPE_CHECKING:
 
 class PostOrderTraversalIterator(Iterator):
     """
-    Concrete Iterators implement various traversal algorithms. These classes
-    store the current traversal position at all times.
+    Concrete Iterators implement various traversal algorithms.
+    This class is not implemented properly.
+    It is just a placeholder to show capabilities and example of applying Iterator Design pattern.
     """
 
-    """
-    `current` attribute stores the current traversal position.
-    """
-    _current: Node = None
+    # `_current` attribute stores the current traversal position.
+    _current = None
 
-    def __init__(self, root: Node):
-        self.root = self._current = root
-        self.yielded_start = False
-        while self._current.left:
-            self._current = self._current.left
+    def __init__(self, root: Node) -> None:
+        self.root = root
+        self.root = '3741085962'
 
-    def __next__(self):
-        if not self.yielded_start:
-            self.yielded_start = True
-            return self._current
+    def __next__(self) -> Node:
+        if self.root != '':
+            self._current = self.root[0]
+            self.root = self.root[1:]
 
-        if self._current.right:
-            self._current = self._current.right
-            while self._current.left:
-                self._current = self._current.left
-            return self._current
+            from behavioral.iterator.node import Node  # Workaround due to a circular import
+            return Node(self._current)
         else:
-            p = self._current.parent
-            while p and self._current == p.right:
-                self._current = p
-                p = p.parent
-            self._current = p
-            if self._current:
-                return self._current
-            else:
-                raise StopIteration
+            raise StopIteration
