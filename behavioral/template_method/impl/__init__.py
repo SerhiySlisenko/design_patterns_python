@@ -1,0 +1,2 @@
+from behavioral.template_method.impl.temporary_damage_card_game import TemporaryDamageCardGame
+from behavioral.template_method.impl.permanent_damage_card_game import PermanentDamageCardGame
