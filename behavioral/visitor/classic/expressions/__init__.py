@@ -1,0 +1,4 @@
+from behavioral.visitor.classic.expressions.value_expr import ValueExpression
+from behavioral.visitor.classic.expressions.addition_expr import AdditionExpression
+from behavioral.visitor.classic.expressions.subtraction_expr import SubtractionExpression
+from behavioral.visitor.classic.expressions.multiplication_expr import MultiplicationExpression

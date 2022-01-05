@@ -1,0 +1,3 @@
+from behavioral.visitor.alternative_python.expressions.addition_expr import AdditionExpression
+from behavioral.visitor.alternative_python.expressions.subtraction_expr import SubtractionExpression
+from behavioral.visitor.alternative_python.expressions.multiplication_expr import MultiplicationExpression
