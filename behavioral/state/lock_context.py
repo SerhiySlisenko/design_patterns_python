@@ -13,7 +13,7 @@ class LockContext:
     """
 
     def __init__(self, combination: List[int]) -> None:
-        self.__password = "".join([str(c) for c in combination])
+        self.__password = "".join(str(combination))
         self.pass_length = len(self.__password)
         self.__state = LockedState()
         self.trial_password = ''
