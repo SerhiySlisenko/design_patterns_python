@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from typing import TYPE_CHECKING
 
 from behavioral.hw_jira_workflow.state import State
@@ -12,8 +14,19 @@ class ResolvedState(State):
     """
 
     def reopen(self, jira_context: JiraContext) -> None:
-        pass
+        jira_context.change_assignee("")
+
+        from . import OpenedState
+        jira_context.set_state(OpenedState())
+        print("JIRA state changed from 'Resolved' to 'Opened' state")
 
     def verify(self, jira_context: JiraContext) -> None:
-        pass
+        if jira_context.get_assignee().lower() in (jira_context.get_reporter().lower(), 'senior'):
+            jira_context.change_assignee("Manager")
+
+            from . import VerifiedState
+            jira_context.set_state(VerifiedState())
+            print("JIRA state changed from 'Resolved' to 'Verified' state")
+        else:
+            print("Only reporter or any senior can verify JIRA. Please change assignee!")
 

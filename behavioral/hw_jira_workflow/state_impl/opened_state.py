@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from typing import TYPE_CHECKING
 
 from behavioral.hw_jira_workflow.state import State
@@ -12,7 +14,13 @@ class OpenedState(State):
     """
 
     def start_progress(self, jira_context: JiraContext) -> None:
-        pass
+        from . import InProgressState
+        jira_context.set_state(InProgressState())
+        print("JIRA state changed from 'Opened' to 'In Progress' state")
 
     def resolve(self, jira_context: JiraContext) -> None:
-        pass
+        jira_context.change_assignee(jira_context.get_reporter())
+
+        from . import ResolvedState
+        jira_context.set_state(ResolvedState())
+        print("JIRA state changed from 'Opened' to 'Resolved' state")

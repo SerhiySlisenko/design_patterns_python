@@ -6,10 +6,10 @@ class Jira:
         self.key = key
         self.reporter = reporter
         self.assignee = ""
-        self.closer = ""
 
     def __str__(self) -> str:
-        return f"Jira: {self.key})"
+        return f"Jira: '{self.key}' - reporter is '{self.reporter}', assignee is " \
+               f"'{self.assignee if self.assignee != '' else 'Unassigned'}')"
 
     def __repr__(self) -> str:
         return f"Jira: {self.key})"

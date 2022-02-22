@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from typing import TYPE_CHECKING
 
 from behavioral.hw_jira_workflow.state import State
@@ -12,4 +14,8 @@ class ClosedState(State):
     """
 
     def reopen(self, jira_context: JiraContext) -> None:
-        pass
+        jira_context.change_assignee("")
+
+        from . import OpenedState
+        jira_context.set_state(OpenedState())
+        print("JIRA state changed from 'Resolved' to 'Opened' state")

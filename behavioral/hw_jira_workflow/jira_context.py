@@ -35,5 +35,17 @@ class JiraContext:
     def verify_jira(self) -> None:
         self.__state.verify(self)
 
-    def close_jira(self, closer_name) -> None:
-        self.__state.close(self, closer_name)
+    def close_jira(self) -> None:
+        self.__state.close(self)
+
+    def change_assignee(self, assignee_name: str) -> None:
+        self.__jira.assignee = assignee_name
+
+    def get_reporter(self) -> str:
+        return self.__jira.reporter
+
+    def get_assignee(self) -> str:
+        return self.__jira.assignee
+
+    def print_jira(self) -> None:
+        print(self.__jira)

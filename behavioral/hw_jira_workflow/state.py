@@ -27,5 +27,5 @@ class State(ABC):
     def verify(self, context: JiraContext) -> None:
         print("verify command - is not allowed!")
 
-    def close(self, context: JiraContext, closer_name: str) -> None:
+    def close(self, context: JiraContext) -> None:
         print("close command - is not allowed!")
